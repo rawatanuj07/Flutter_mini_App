@@ -4,9 +4,15 @@ void main() => runApp(MaterialApp(
       home: WarriorCard(),
     ));
 
-class WarriorCard extends StatelessWidget {
-  const WarriorCard({super.key});
+class WarriorCard extends StatefulWidget {
+  // const WarriorCard({super.key});
 
+  @override
+  State<WarriorCard> createState() => _WarriorCardState();
+}
+
+class _WarriorCardState extends State<WarriorCard> {
+  int warriorLevel = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,6 +22,15 @@ class WarriorCard extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.grey[850],
         elevation: 0.0,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            warriorLevel += 1;
+          });
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.grey[800],
       ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0.0),
@@ -57,7 +72,7 @@ class WarriorCard extends StatelessWidget {
               ),
               SizedBox(height: 10.0),
               Text(
-                '07',
+                '$warriorLevel',
                 style: TextStyle(
                   color: Colors.amberAccent[200],
                   letterSpacing: 2.0,
